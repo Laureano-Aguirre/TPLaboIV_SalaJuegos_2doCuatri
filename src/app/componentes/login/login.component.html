@@ -1,0 +1,42 @@
+<div class="form-container">
+  <div class="ngForm">
+    <div class="inputs-container">
+      <mat-form-field>
+        <mat-label>Ingrese su usuario</mat-label>
+        <input [(ngModel)]="userIngresado" matInput class="input-form" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ingrese su contraseña</mat-label>
+        <input
+          [(ngModel)]="passIngresada"
+          matInput
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="buttons-container">
+      <button (click)="Login()" id="button-login" mat-flat-button>
+        Iniciar sesion
+      </button>
+      <button
+        (click)="goToRegister('register')"
+        id="button-login"
+        mat-flat-button
+      >
+        Registrarse
+      </button>
+      <button (click)="autoComplete()" id="button-login" mat-flat-button>
+        Auto completar datos
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<mat-toolbar class="navbar">
+  <div class="navbar-content">
+    <a class="button-navbar" mat-button (click)="goTo(rutaHome)">Home</a>
+    <a class="button-navbar" mat-button (click)="goTo(rutaPuntuacion)"
+      >Puntuación</a
+    >
+    <a class="button-navbar" mat-button (click)="goTo(rutaMensajeria)">Chat</a>
+    <a class="button-navbar" mat-button (click)="goTo(rutaQuienSoy)"
+      >¿Quién soy?</a
+    >
+  </div>
+  <div class="icon-container">
+    <i id="icon-person" class="bi bi-person" aria-label="Perfil"></i>
+    <i
+      id="icon-logout"
+      class="bi bi-box-arrow-in-right"
+      aria-label="Cerrar sesión"
+    ></i>
+  </div>
+</mat-toolbar>

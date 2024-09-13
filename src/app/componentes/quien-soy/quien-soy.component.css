@@ -1,0 +1,37 @@
+.container-pag {
+  background-image: url("../../../assets/img/img-fondohome.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+
+.container-presentacion {
+  background-color: rgba(226, 226, 183, 0.95);
+  width: 650px;
+  height: 450px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.h1-container {
+  font-family: "Montserrat", sans-serif;
+}
+
+.texto {
+  padding: 10px;
+}
+
+.foto-personal {
+  background: url("../../../assets/img/img-personal.jpeg");
+  background-size: cover;
+  width: 100px;
+  height: 100px;
+}
