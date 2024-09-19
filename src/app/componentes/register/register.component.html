@@ -1,0 +1,53 @@
+<div class="form-container">
+  <div class="img-login"></div>
+  <div class="ngForm">
+    <mat-form-field>
+      <mat-label>Ingrese su nuevo usuario</mat-label>
+      <input [(ngModel)]="userNuevo" matInput />
+    </mat-form-field>
+    <div class="example-container">
+      <mat-form-field>
+        <mat-label>Ingrese su nueva contraseña</mat-label>
+        <input
+          [(ngModel)]="passNueva"
+          matInput
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ingrese nuevamente su contraseña</mat-label>
+        <input
+          [(ngModel)]="passNuevaConfirm"
+          matInput
+          [type]="hide ? 'password' : 'text'"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="buttons-container">
+      <button (click)="Register()" id="button-login" mat-flat-button>
+        Registrarse
+      </button>
+      <button (click)="goTo('login')" id="button-login" mat-flat-button>
+        Atras
+      </button>
+    </div>
+  </div>
+</div>

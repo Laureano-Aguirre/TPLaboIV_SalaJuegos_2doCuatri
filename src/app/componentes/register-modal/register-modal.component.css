@@ -1,0 +1,6 @@
+#button-display {
+  display: table-cell;
+  max-width: 600px;
+  background-color: rgb(56, 118, 233);
+  color: white;
+}

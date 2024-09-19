@@ -8,11 +8,12 @@ import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
   standalone: true,
   imports: [RouterOutlet, NavBarComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'tpjuegos';
   isLoginPage = false;
+  isRegisterPage = false;
 
   constructor(private readonly router: Router) {
     this.router.events
@@ -23,6 +24,7 @@ export class AppComponent {
       )
       .subscribe((event: NavigationEnd) => {
         this.isLoginPage = event.urlAfterRedirects === '/login';
+        this.isRegisterPage = event.urlAfterRedirects === '/register';
       });
   }
 }

@@ -6,7 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialog } from '@angular/material/dialog';
 import { Auth, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-// import { LogoutModalComponent } from '../logout-modal/logout-modal.component';
+import { LogoutModalComponent } from '../logout-modal/logout-modal.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -30,7 +30,7 @@ export class NavBarComponent {
   goTo(path: string) {
     this.router.navigate([path]);
   }
-  /* displayModalLogout(): void {
+  displayModalLogout(): void {
     const dialogRef = this.dialog.open(LogoutModalComponent);
-  } */
+  }
 }

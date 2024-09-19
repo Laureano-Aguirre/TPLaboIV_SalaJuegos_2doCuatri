@@ -1,0 +1,62 @@
+.form-container {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #6a11cb, #2575fc, #ee0979, #ff6a00);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+.ngForm {
+  background-color: rgba(154, 183, 233, 0.9);
+  width: 350px;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+mat-form-field {
+  /* max-width: 250px; */
+  width: 320px;
+}
+
+#button-login {
+  display: table-cell;
+  max-width: 600px;
+  background-color: rgb(56, 118, 233);
+  color: white;
+}
+
+.example-container {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+::ng-deep .mat-icon {
+  color: #948a8ab5; /* Cambia el color del icono de visibilidad */
+}
