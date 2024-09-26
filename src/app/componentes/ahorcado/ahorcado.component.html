@@ -1,1 +1,30 @@
-<div class="form-container"></div>
+<div class="form-container">
+  <div class="game-container" [ngClass]="{ error: letraErronea }">
+    <h1>Juego del Ahorcado</h1>
+    <p>Palabra: {{ palabraOculta }}</p>
+    <p>Intentos restantes: {{ intentos }}</p>
+    <p>Letras usadas: {{ letrasUsadas.join(", ") }}</p>
+    <div class="botones-letras">
+      <button
+        *ngFor="let letra of alfabeto"
+        (click)="intentarLetra(letra)"
+        [disabled]="
+          letrasUsadas.includes(letra) ||
+          intentos === 0 ||
+          !palabraOculta.includes('_')
+        "
+      >
+        {{ letra }}
+      </button>
+    </div>
+    <p *ngIf="mensaje">{{ mensaje }}</p>
+    <button
+      mat-fab
+      extended
+      class="button-reiniciar"
+      (click)="reiniciarJuego()"
+    >
+      Reiniciar juego
+    </button>
+  </div>
+</div>

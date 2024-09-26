@@ -1,0 +1,1 @@
+import{Lb as i,Sb as s,na as o,ub as a,vb as r}from"./chunk-EYJ7XVTL.js";var f=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-preguntados"]],standalone:!0,features:[s],decls:2,vars:0,template:function(n,d){n&1&&(a(0,"p"),i(1,"preguntados works!"),r())}});let t=e;return t})();export{f as default};
