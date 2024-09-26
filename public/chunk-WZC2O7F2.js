@@ -1,0 +1,1 @@
+import{Lb as i,Rb as m,na as o,ub as a,vb as r}from"./chunk-G25CTKN2.js";var d=(()=>{let e=class e{};e.\u0275fac=function(n){return new(n||e)},e.\u0275cmp=o({type:e,selectors:[["app-mayormenor"]],standalone:!0,features:[m],decls:2,vars:0,template:function(n,p){n&1&&(a(0,"p"),i(1,"mayormenor works!"),r())}});let t=e;return t})();export{d as default};
