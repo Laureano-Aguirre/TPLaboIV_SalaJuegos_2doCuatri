@@ -1,1 +1,36 @@
-<div class="home-container"></div>
+<div class="home-container">
+  <div class="juegos-container">
+    <div class="juegos1-container">
+      <div class="juego-ahorcado" (click)="goTo(rutaAhorcado)">
+        <img
+          src="../../../assets/img/juego-ahorcado.gif"
+          alt=""
+          class="img-ahorcado"
+        />
+        <p>Ahorcado!</p>
+      </div>
+      <div class="juego-mayormenor" (click)="goTo(rutaMayorMenor)">
+        <img
+          src="../../../assets/img/juego-mayormenor.gif"
+          alt=""
+          class="img-mayormenor"
+        />
+        <p>Mayor menor!</p>
+      </div>
+    </div>
+    <div class="juegos2-container">
+      <div class="juego-preguntados" (click)="goTo(rutaPreguntados)">
+        <img
+          src="../../../assets/img/juego-preguntados.gif"
+          alt=""
+          class="img-preguntados"
+        />
+        <p>Preguntados!</p>
+      </div>
+      <div class="juego-juegopropio" (click)="goTo(rutaMiJuego)">
+        <img src="" alt="" />
+        <p>Mi jueguito!</p>
+      </div>
+    </div>
+  </div>
+</div>

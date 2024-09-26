@@ -12,7 +12,7 @@
 .ngForm {
   background-color: rgba(154, 183, 233, 0.9);
   width: 350px;
-  height: 350px;
+  height: 450px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,5 +60,26 @@
 }
 
 ::ng-deep .mat-icon {
-  color: #948a8ab5; /* Cambia el color del icono de visibilidad */
+  color: #948a8ab5;
+}
+
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 10;
+}
+
+.blurred {
+  filter: blur(5px);
+}
+
+.spinner {
+  z-index: 11;
 }

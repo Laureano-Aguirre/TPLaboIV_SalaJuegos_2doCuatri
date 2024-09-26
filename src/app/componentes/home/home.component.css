@@ -4,4 +4,133 @@
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.juegos-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 900px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.juegos1-container,
+.juegos2-container {
+  width: 800px;
+  height: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.juegos1-container {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.juegos2-container {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.juego-ahorcado,
+.juego-mayormenor,
+.juego-preguntados,
+.juego-juegopropio {
+  width: 45%;
+  height: 90%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.juego-ahorcado:hover,
+.juego-mayormenor:hover,
+.juego-preguntados:hover,
+.juego-juegopropio:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+.img-ahorcado,
+.img-mayormenor,
+.img-preguntados {
+  max-width: 100%;
+  max-height: 80%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.juego-ahorcado p {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.juego-mayormenor p {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.juego-preguntados p {
+  margin-top: 10px;
+  text-align: center;
+}
+.juego-juegopropio p {
+  margin-top: 10px;
+  text-align: center;
+}
+
+@media (max-width: 920px) {
+  .juegos-container {
+    width: 90%;
+    height: auto;
+  }
+
+  .juegos1-container,
+  .juegos2-container {
+    width: 90%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .juego-ahorcado,
+  .juego-mayormenor,
+  .juego-preguntados {
+    width: 90%;
+    height: 140px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 920px) {
+  .juegos1-container {
+    width: 90%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .juego-ahorcado {
+    width: 90%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .img-ahorcado {
+    max-height: 200px;
+  }
 }

@@ -14,4 +14,22 @@ export const routes: Routes = [
   { path: 'puntuacion', component: PuntuacionComponent },
   { path: 'mensajeria', component: MensajeriaComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: 'ahorcado',
+    loadComponent: () => import('./componentes/ahorcado/ahorcado.component'),
+  },
+  {
+    path: 'mayormenor',
+    loadComponent: () =>
+      import('./componentes/mayormenor/mayormenor.component'),
+  },
+  {
+    path: 'preguntados',
+    loadComponent: () =>
+      import('./componentes/preguntados/preguntados.component'),
+  },
+  {
+    path: 'mi-juego',
+    loadComponent: () => import('./componentes/mi-juego/mi-juego.component'),
+  },
 ];

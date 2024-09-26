@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterModalComponent } from '../register-modal/register-modal.component';
 import { DatosService } from '../../services/datos.service';
 import { Firestore } from '@angular/fire/firestore';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-register',
@@ -24,6 +25,7 @@ import { Firestore } from '@angular/fire/firestore';
     CommonModule,
     RouterModule,
     RouterLink,
+    MatProgressSpinnerModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
@@ -34,6 +36,7 @@ export default class RegisterComponent {
   passNueva!: string;
   passNuevaConfirm!: string;
   loggedUser!: string;
+  isLoading = false;
 
   constructor(
     private router: Router,
@@ -48,14 +51,21 @@ export default class RegisterComponent {
   }
 
   Register() {
+    this.isLoading = true;
     if (this.passNueva === this.passNuevaConfirm) {
       createUserWithEmailAndPassword(this.auth, this.userNuevo, this.passNueva)
         .then((res) => {
+          this.isLoading = false;
           if (res.user.email !== null) this.loggedUser = res.user.email;
           this.enviarUser();
-          this.goTo('dashboard/home');
+          this.openErrorDialog(
+            'Exito!',
+            'Exito al registrarse, sera redirigido al login.'
+          );
+          this.goTo('login');
         })
         .catch((e) => {
+          this.isLoading = false;
           if (e.code === 'auth/invalid-email') {
             this.openErrorDialog(
               'Usuario inválido',
@@ -70,6 +80,7 @@ export default class RegisterComponent {
           }
         });
     } else {
+      this.isLoading = false;
       this.openErrorDialog(
         'Contraseñas no coinciden',
         'Las contraseñas no coinciden. Por favor, inténtalo de nuevo.'

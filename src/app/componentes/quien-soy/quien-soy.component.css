@@ -4,34 +4,79 @@
   background-repeat: no-repeat;
   background-position: center;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container-presentacion {
-  background-color: rgba(226, 226, 183, 0.95);
-  width: 650px;
-  height: 450px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 80%;
+  max-width: 600px;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: start;
-  align-items: center;
   flex-direction: column;
-  border-radius: 10px;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.container-presentacion:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
 .h1-container {
   font-family: "Montserrat", sans-serif;
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .texto {
-  padding: 10px;
+  font-family: "Open Sans", sans-serif;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-align: justify;
 }
 
 .foto-personal {
-  background: url("../../../assets/img/img-personal.jpeg");
-  background-size: cover;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: url("../../../assets/img/img-personal.jpeg") center/cover
+    no-repeat;
+  border: 5px solid #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.foto-personal:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .container-presentacion {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .h1-container {
+    font-size: 2rem;
+  }
+
+  .texto {
+    font-size: 0.9rem;
+  }
+
+  .foto-personal {
+    width: 120px;
+    height: 120px;
+  }
 }

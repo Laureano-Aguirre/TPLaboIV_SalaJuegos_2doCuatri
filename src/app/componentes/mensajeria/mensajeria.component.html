@@ -1,14 +1,35 @@
 <div class="container-pag">
-  <div class="maintenance-container">
-    <div class="maintenance-content">
-      <h1>¡En mantenimiento!</h1>
-      <p>Estamos trabajando para mejorar tu experiencia!</p>
-      <div class="ilustracion">
-        <img
-          src="../../../assets/img/mantenimiento.png"
-          alt="Mantenimiento"
-          class="maintenance-image"
-        />
+  <div class="container-titulo">Mensajeria!</div>
+  <div class="container-chat">
+    <div class="container-mensajes">
+      <div
+        *ngFor="let mensaje of mensajesCollection; let i = index"
+        class="mensaje"
+        [ngClass]="{ 'mensaje-usuario-actual': mensaje.user === user }"
+      >
+        <div class="mensaje-datos">
+          <span>{{ mensaje.user }}</span>
+          <span>{{
+            mensaje.fecha.seconds * 1000 | date : "dd-MM-yy HH:ss:mm"
+          }}</span>
+        </div>
+        <div class="mensaje-contenido">
+          <p>{{ mensaje.mensaje }}</p>
+        </div>
+      </div>
+      <div class="container-enviarMensaje">
+        <div class="input-enviarMensaje">
+          <input
+            [(ngModel)]="mensaje"
+            type="text"
+            placeholder="Escribe tu mensaje..."
+            class="input-texto"
+            (keyup.enter)="EnviarMensaje()"
+          />
+        </div>
+        <div class="boton-enviar">
+          <i (click)="EnviarMensaje()" class="fa-solid fa-paper-plane"></i>
+        </div>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="form-container" [ngClass]="{ blurred: isLoading }">
   <div class="img-login"></div>
   <div class="ngForm">
     <mat-form-field>
@@ -48,6 +48,9 @@
       <button (click)="goTo('login')" id="button-login" mat-flat-button>
         Atras
       </button>
+    </div>
+    <div class="spinner-overlay" *ngIf="isLoading">
+      <mat-spinner class="spinner"></mat-spinner>
     </div>
   </div>
 </div>

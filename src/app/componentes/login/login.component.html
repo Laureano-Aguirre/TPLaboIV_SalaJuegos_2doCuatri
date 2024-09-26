@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="form-container" [ngClass]="{ blurred: isLoading }">
   <div class="ngForm">
     <div class="inputs-container">
       <mat-form-field>
@@ -38,5 +38,9 @@
         Auto completar datos
       </button>
     </div>
+  </div>
+
+  <div class="spinner-overlay" *ngIf="isLoading">
+    <mat-spinner class="spinner"></mat-spinner>
   </div>
 </div>

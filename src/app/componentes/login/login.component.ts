@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule, NgForm } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import {
@@ -14,6 +15,9 @@ import {
 } from '@angular/fire/firestore';
 import { Auth, signInWithEmailAndPassword, signOut } from '@angular/fire/auth';
 import { DatosService } from '../../services/datos.service';
+import { RegisterModalComponent } from '../register-modal/register-modal.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +31,8 @@ import { DatosService } from '../../services/datos.service';
     MatIconModule,
     MatButtonModule,
     RouterLink,
+    MatProgressSpinnerModule,
+    CommonModule,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
@@ -38,11 +44,13 @@ export class LoginComponent {
   loggedUser!: string;
   public loginsColection: any[] = [];
   public countLogins: number = 0;
+  isLoading = false;
 
   constructor(
     private router: Router,
     private firestore: Firestore,
     public auth: Auth,
+    public dialog: MatDialog,
     private datosService: DatosService
   ) {}
 
@@ -60,12 +68,14 @@ export class LoginComponent {
   }
 
   Login() {
+    this.isLoading = true;
     signInWithEmailAndPassword(
       this.auth,
       this.userIngresado,
       this.passIngresada
     )
       .then((res) => {
+        this.isLoading = false;
         if (res.user.email !== null) {
           this.loggedUser = res.user.email;
           this.enviarUser();
@@ -73,13 +83,23 @@ export class LoginComponent {
         }
       })
       .catch((e) => {
+        this.isLoading = false;
         if (e.code === 'auth/invalid-email') {
-          alert('Usuario incorrecto.');
+          this.openErrorDialog(
+            'Usuario inválido',
+            'El usuario no es válido, intente nuevamente.'
+          );
         } else if (e.code === 'auth/invalid-credential') {
-          alert('Contraseña incorrecta.');
+          this.openErrorDialog(
+            'Usuario inválido',
+            'El usuario no es válido, intente nuevamente.'
+          );
         } else {
           console.error(e);
-          alert('Error al iniciar sesión. Por favor, intenta más tarde.');
+          this.openErrorDialog(
+            'Usuario inválido',
+            'El usuario no es válido, intente nuevamente.'
+          );
         }
       });
   }
@@ -115,6 +135,12 @@ export class LoginComponent {
   CloseSession() {
     signOut(this.auth).then(() => {
       this.goTo('login');
+    });
+  }
+
+  openErrorDialog(title: string, message: string) {
+    const dialogRef = this.dialog.open(RegisterModalComponent, {
+      data: { title: title, message: message },
     });
   }
 }

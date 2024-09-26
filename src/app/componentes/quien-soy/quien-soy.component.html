@@ -1,20 +1,8 @@
 <div class="container-pag">
   <div class="container-presentacion">
     <h1 class="h1-container">Quien soy?</h1>
-    <p class="texto">
-      Hola, soy Laureano! y te voy a contar sobre mi. Empece la tecnicatura en
-      2021, tengo 23 años, y no me canse de recursar labo 2(?), pero si, fue de
-      las que ams me atraso. Por suerte me di cuenta que tenia que ponerme las
-      pilas y dejar de perder el tiempo. Me gusta el desarrollo WEB, y me
-      interesaria seguir aprendiendo (de hecho en paralelo hago un curso de
-      desarrollo WEBB full stack en NUCBA, 1 añito, heavy je). Laburo en el
-      rubro de analista de sistemas y tester desde la experiencia de usuario.
-      Adjunto una foto mia de chiquito porque pinto (?). Un saludo y espero que
-      pierdas el juego porque si lo ganas significa que voy a tener que codear
-      hasta que alguno lo gane, y tiene pinta de que va a terminar como el
-      pibito que se paso el tetris y el juego la quedo en el nivel 156 jeje.
-    </p>
-    <div class="foto-personal"></div>
+    <p class="texto" id="typewriter"></p>
+    <div class="foto-personal" [class.mostrar]="mostrarFoto"></div>
   </div>
   <link
     rel="stylesheet"
