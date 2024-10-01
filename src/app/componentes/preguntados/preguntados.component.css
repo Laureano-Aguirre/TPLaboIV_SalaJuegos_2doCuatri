@@ -29,9 +29,13 @@
 }
 
 .bandera-container {
-  background-color: black;
+  /* background-color: black; */
   width: 460px;
   height: 270px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .opciones-container {
@@ -63,4 +67,10 @@
   width: 280px;
   height: 55px;
   border-radius: 8px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
 }
