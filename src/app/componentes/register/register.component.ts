@@ -58,11 +58,8 @@ export default class RegisterComponent {
           this.isLoading = false;
           if (res.user.email !== null) this.loggedUser = res.user.email;
           this.enviarUser();
-          this.openErrorDialog(
-            'Exito!',
-            'Exito al registrarse, sera redirigido al login.'
-          );
-          this.goTo('login');
+          this.openErrorDialog('Exito!', 'Exito al registrarse!');
+          this.goTo('home');
         })
         .catch((e) => {
           this.isLoading = false;
@@ -71,11 +68,21 @@ export default class RegisterComponent {
               'Usuario inválido',
               'El usuario no es válido.'
             );
+          } else if (e.code === 'auth/weak-password') {
+            this.openErrorDialog(
+              'Contraseña débil',
+              'La contraseña es demasiado débil. Debe tener al menos 6 caracteres.'
+            );
+          } else if (e.code === 'auth/email-already-in-use') {
+            this.openErrorDialog(
+              'Correo ya registrado',
+              'Este correo electrónico ya tiene una cuenta asociada. Intente con otro correo.'
+            );
           } else {
             console.error(e);
             this.openErrorDialog(
               'Error al registrar',
-              'Error al registrar la cuenta. Por favor, intenta más tarde.'
+              'Error al registrar la cuenta. Intente mas tarde.'
             );
           }
         });

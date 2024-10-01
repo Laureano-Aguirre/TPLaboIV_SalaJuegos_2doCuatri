@@ -10,7 +10,7 @@
 }
 
 .juegos-container {
-  background-color: rgba(255, 255, 255, 0.9);
+  /* background-color: rgba(255, 255, 255, 0.9); */
   width: 900px;
   height: 700px;
   display: flex;
@@ -19,7 +19,7 @@
   align-items: center;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
 }
 
 .juegos1-container,
@@ -33,21 +33,13 @@
   border-radius: 10px;
 }
 
-.juegos1-container {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.juegos2-container {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
 .juego-ahorcado,
 .juego-mayormenor,
 .juego-preguntados,
 .juego-juegopropio {
   width: 45%;
-  height: 90%;
-  background-color: rgba(255, 255, 255, 0.1);
+  height: 100%;
+  /* background-color: rgba(255, 255, 255, 0.1); */
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -74,25 +66,43 @@
   max-height: 80%;
   object-fit: contain;
   border-radius: 10px;
+  border: 5px solid burlywood;
 }
 
 .juego-ahorcado p {
   margin-top: 10px;
   text-align: center;
+  background-color: burlywood;
 }
 
 .juego-mayormenor p {
   margin-top: 10px;
   text-align: center;
+  background-color: burlywood;
 }
 
 .juego-preguntados p {
   margin-top: 10px;
   text-align: center;
+  background-color: burlywood;
 }
-.juego-juegopropio p {
-  margin-top: 10px;
+.juego-juegopropio p,
+.juego-preguntados p,
+.juego-mayormenor p,
+.juego-ahorcado p {
+  width: 150px;
+  height: 50px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: burlywood;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 @media (max-width: 920px) {

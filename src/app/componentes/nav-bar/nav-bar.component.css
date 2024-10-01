@@ -19,10 +19,55 @@
 .icon-container {
   display: flex;
   gap: 10px;
+  position: relative;
 }
 
 #icon-person,
 #icon-logout {
   cursor: pointer;
   font-size: 1.5rem;
+}
+
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-message {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  right: 0;
+  margin-top: 10px;
+  opacity: 0;
+  transition: opacity 0.3s, visibility 0.3s;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: calc(100vw - 20px);
+}
+
+.hover-message::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  right: 10px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent #555 transparent;
+}
+
+.icon-wrapper:hover .hover-message {
+  visibility: visible;
+  opacity: 1;
+}
+
+#icon-person {
+  margin-right: 15px;
 }

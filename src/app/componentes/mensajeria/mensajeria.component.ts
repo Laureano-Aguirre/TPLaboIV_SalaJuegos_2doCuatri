@@ -34,10 +34,14 @@ export class MensajeriaComponent implements OnInit {
 
   EnviarMensaje() {
     let col = collection(this.firestore, 'mensajes');
-    alert(this.user);
     this.recibirUser();
-    alert(this.user);
-    addDoc(col, { fecha: new Date(), user: this.user, mensaje: this.mensaje });
+    const fecha = new Date();
+
+    addDoc(col, {
+      fecha: fecha,
+      user: this.user,
+      mensaje: this.mensaje,
+    });
     this.mensaje = '';
   }
 

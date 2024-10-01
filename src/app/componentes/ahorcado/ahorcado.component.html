@@ -1,7 +1,7 @@
 <div class="form-container">
   <div class="game-container" [ngClass]="{ error: letraErronea }">
-    <h1>Juego del Ahorcado</h1>
-    <p>Palabra: {{ palabraOculta }}</p>
+    <h1>Ahorcado!</h1>
+    <p class="palabra-oculta">{{ palabraOculta }}</p>
     <p>Intentos restantes: {{ intentos }}</p>
     <p>Letras usadas: {{ letrasUsadas.join(", ") }}</p>
     <div class="botones-letras">

@@ -18,6 +18,7 @@ export default class AhorcadoComponent {
   mensaje: string = '';
   alfabeto: string[] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
   letraErronea: boolean = false;
+  letraAcertada: boolean = false;
 
   ngOnInit() {
     this.iniciarJuego();
@@ -31,6 +32,7 @@ export default class AhorcadoComponent {
     this.letrasUsadas = [];
     this.mensaje = '';
     this.letraErronea = false;
+    this.letraAcertada = false;
   }
 
   intentarLetra(letra: string) {
@@ -48,6 +50,11 @@ export default class AhorcadoComponent {
         }
       }
       this.palabraOculta = palabraArray.join('');
+
+      this.letraAcertada = true;
+      setTimeout(() => {
+        this.letraAcertada = false;
+      }, 300);
 
       if (!this.palabraOculta.includes('_')) {
         this.mensaje =

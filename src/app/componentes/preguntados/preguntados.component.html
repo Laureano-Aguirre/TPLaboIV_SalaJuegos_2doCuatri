@@ -1,1 +1,35 @@
-<p>preguntados works!</p>
+<div class="form-container">
+  <div class="game-container" *ngIf="!loading && !error">
+    <h1>Preguntados!</h1>
+    <div class="consigna-container">
+      <h2>¿De qué país es la siguiente bandera?:</h2>
+      <div class="bandera-container">
+        <img
+          *ngIf="selectedPais"
+          [src]="selectedPais.flags.png"
+          [alt]="'Bandera de ' + selectedPais.name.common"
+        />
+      </div>
+    </div>
+    <div class="opciones-container">
+      <div class="opciones-fila1">
+        <div class="opcion1" (click)="verificarRespuesta(opciones[0])">
+          {{ opciones[0] }}
+        </div>
+        <div class="opcion2" (click)="verificarRespuesta(opciones[1])">
+          {{ opciones[1] }}
+        </div>
+      </div>
+      <div class="opciones-fila2">
+        <div class="opcion3" (click)="verificarRespuesta(opciones[2])">
+          {{ opciones[2] }}
+        </div>
+        <div class="opcion4" (click)="verificarRespuesta(opciones[3])">
+          {{ opciones[3] }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="loading">Cargando países...</div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+</div>

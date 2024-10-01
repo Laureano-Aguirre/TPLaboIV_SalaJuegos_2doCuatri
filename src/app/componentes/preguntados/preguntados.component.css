@@ -1,0 +1,66 @@
+.form-container {
+  background-image: url("../../../assets/img/img-fondohome.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.game-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.consigna-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* background-color: gray; */
+  align-items: center;
+  padding: 10px;
+}
+
+.bandera-container {
+  background-color: black;
+  width: 460px;
+  height: 270px;
+}
+
+.opciones-container {
+  display: flex;
+  width: 800px;
+  height: 300px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  flex-direction: column;
+}
+
+.opciones-fila1,
+.opciones-fila2 {
+  /* background-color: bisque; */
+  width: 700px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.opcion1,
+.opcion2,
+.opcion3,
+.opcion4 {
+  background-color: burlywood;
+  width: 280px;
+  height: 55px;
+  border-radius: 8px;
+}
