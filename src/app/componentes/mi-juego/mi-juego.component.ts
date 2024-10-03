@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ModalComponent } from '../modal/modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
 
 interface Cuadrado {
   visible: boolean;
@@ -12,21 +11,26 @@ interface Cuadrado {
 
 @Component({
   standalone: true,
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule],
   selector: 'app-mi-juego',
   templateUrl: './mi-juego.component.html',
   styleUrls: ['./mi-juego.component.css'],
 })
-export class MiJuegoComponent implements OnInit {
+export class MiJuegoComponent implements OnInit, OnDestroy {
   tirosAcertados: number = 0;
   filas: Cuadrado[][] = [];
   juegoEnCurso: boolean = false;
   cuadradoActual: Cuadrado | null = null;
+  temporizador: any;
 
   constructor(public dialog: MatDialog, private router: Router) {}
 
   ngOnInit() {
     this.inicializarFilas();
+  }
+
+  ngOnDestroy() {
+    this.detenerJuego();
   }
 
   inicializarFilas() {
@@ -39,13 +43,34 @@ export class MiJuegoComponent implements OnInit {
     }
   }
 
+  toggleJuego() {
+    if (this.juegoEnCurso) {
+      this.detenerJuego();
+    } else {
+      this.comenzarJuego();
+    }
+  }
+
   comenzarJuego() {
     this.juegoEnCurso = true;
     this.tirosAcertados = 0;
     this.mostrarSiguienteCuadrado();
   }
 
+  detenerJuego() {
+    this.juegoEnCurso = false;
+    if (this.temporizador) {
+      clearTimeout(this.temporizador);
+    }
+    if (this.cuadradoActual) {
+      this.cuadradoActual.visible = false;
+    }
+    this.cuadradoActual = null;
+  }
+
   mostrarSiguienteCuadrado() {
+    if (!this.juegoEnCurso) return;
+
     if (this.cuadradoActual) {
       this.cuadradoActual.visible = false;
     }
@@ -62,28 +87,30 @@ export class MiJuegoComponent implements OnInit {
     this.cuadradoActual = cuadradosDisponibles[indiceAleatorio];
     this.cuadradoActual.visible = true;
 
-    setTimeout(() => {
+    this.temporizador = setTimeout(() => {
       if (this.cuadradoActual && this.cuadradoActual.visible) {
         this.cuadradoActual.visible = false;
         this.mostrarSiguienteCuadrado();
       }
-    }, 1500);
+    }, 800);
   }
 
   clickCuadrado(cuadrado: Cuadrado) {
     if (cuadrado.visible) {
       this.tirosAcertados++;
       cuadrado.visible = false;
+      clearTimeout(this.temporizador);
       this.mostrarSiguienteCuadrado();
     }
   }
 
   finalizarJuego() {
-    this.juegoEnCurso = false;
+    this.detenerJuego();
     alert(`¡Juego terminado! Tiros acertados: ${this.tirosAcertados}`);
   }
 
   salir() {
+    this.detenerJuego();
     const dialogRef = this.dialog.open(ModalComponent, {
       data: {
         title: 'Salir del juego',

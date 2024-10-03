@@ -24,14 +24,8 @@
       </div>
     </div>
     <div class="buttons-container">
-      <button
-        mat-fab
-        extended
-        class="button-juego"
-        (click)="comenzarJuego()"
-        [disabled]="juegoEnCurso"
-      >
-        Comenzar
+      <button mat-fab extended class="button-juego" (click)="toggleJuego()">
+        {{ juegoEnCurso ? "Parar" : "Comenzar" }}
       </button>
       <button mat-fab extended class="button-juego" (click)="salir()">
         Salir
