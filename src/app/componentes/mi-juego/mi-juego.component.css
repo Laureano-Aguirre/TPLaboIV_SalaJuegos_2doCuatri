@@ -1,0 +1,115 @@
+.home-container {
+  background-image: url("../../../assets/img/img-fondohome.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.game-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  max-height: 800px;
+  border-radius: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.consigna-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.campo-tiro-container {
+  background-color: black;
+  width: 700px;
+  height: 400px;
+  border-radius: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.fila {
+  width: 90%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.fila button {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.fila button.visible {
+  opacity: 1;
+}
+
+.fila button.invisible {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fila1 button {
+  background-color: #ff6b6b;
+}
+.fila2 button {
+  background-color: #4ecdc4;
+}
+.fila3 button {
+  background-color: #45b7d1;
+}
+.fila4 button {
+  background-color: #f7fff7;
+}
+.fila5 button {
+  background-color: #ff8c42;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.button-juego {
+  background-color: burlywood;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: fit-content;
+  margin: 20px auto;
+  padding: 0 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.button-juego:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

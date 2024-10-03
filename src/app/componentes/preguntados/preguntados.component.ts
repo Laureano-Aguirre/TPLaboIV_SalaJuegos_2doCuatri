@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DatosService } from '../../services/datos.service';
 import { CommonModule } from '@angular/common';
+import { LogoutModalComponent } from '../logout-modal/logout-modal.component';
+import { MatIcon } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from '../modal/modal.component';
+import { Router } from '@angular/router';
 
 interface Country {
   name: {
@@ -25,8 +30,13 @@ export default class PreguntadosComponent implements OnInit {
   opciones!: string[];
   loading: boolean = true;
   error: string = '';
+  respuestaEstado!: boolean | null;
 
-  constructor(private datosService: DatosService) {}
+  constructor(
+    private datosService: DatosService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadPaises();
@@ -56,6 +66,7 @@ export default class PreguntadosComponent implements OnInit {
       return;
     }
 
+    this.respuestaEstado = null;
     const randomIndex = Math.floor(Math.random() * this.paises.length);
     this.selectedPais = this.paises[randomIndex];
 
@@ -72,9 +83,28 @@ export default class PreguntadosComponent implements OnInit {
 
   verificarRespuesta(opcionElegida: string) {
     if (this.selectedPais && opcionElegida === this.selectedPais.name.common) {
-      alert('Le pegaste crack');
+      this.respuestaEstado = true;
     } else {
-      alert('Le pifiaste cabezon');
+      this.respuestaEstado = false;
     }
+
+    setTimeout(() => {
+      this.nuevaPregunta();
+    }, 2000);
+  }
+
+  salir() {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      data: {
+        title: 'Salir del juego',
+        message: '¿Está seguro que desea salir del juego?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        this.router.navigate(['/home']);
+      }
+    });
   }
 }

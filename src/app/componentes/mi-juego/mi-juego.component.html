@@ -1,1 +1,41 @@
-<p>mi-juego works!</p>
+<div class="home-container">
+  <div class="game-container">
+    <h1>Paren los tiros!</h1>
+    <div class="consigna-container">
+      <p>
+        Intenta pegarle a todos los cuadraditos y suma puntos, no seas choto!
+      </p>
+      <h2>Tiros acertados: {{ tirosAcertados }}</h2>
+    </div>
+    <div class="campo-tiro-container">
+      <div
+        *ngFor="let fila of filas; let i = index"
+        class="fila"
+        [ngClass]="'fila' + (i + 1)"
+      >
+        <button
+          *ngFor="let cuadrado of fila"
+          (click)="clickCuadrado(cuadrado)"
+          [ngClass]="{
+            visible: cuadrado.visible,
+            invisible: !cuadrado.visible
+          }"
+        ></button>
+      </div>
+    </div>
+    <div class="buttons-container">
+      <button
+        mat-fab
+        extended
+        class="button-juego"
+        (click)="comenzarJuego()"
+        [disabled]="juegoEnCurso"
+      >
+        Comenzar
+      </button>
+      <button mat-fab extended class="button-juego" (click)="salir()">
+        Salir
+      </button>
+    </div>
+  </div>
+</div>

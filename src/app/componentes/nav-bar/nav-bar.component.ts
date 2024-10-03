@@ -38,7 +38,6 @@ export class NavBarComponent implements OnInit {
     this.router.navigate([path]);
   }
   displayModalLogout(): void {
-    alert(this.user);
     const dialogRef = this.dialog.open(LogoutModalComponent);
   }
 

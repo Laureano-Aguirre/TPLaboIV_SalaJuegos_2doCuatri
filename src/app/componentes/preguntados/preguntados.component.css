@@ -3,20 +3,28 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
-  align-items: center;
+  height: 100%;
   display: flex;
   justify-content: center;
 }
 
 .game-container {
   background-color: rgba(255, 255, 255, 0.8);
-  padding: 20px;
+  max-height: 800px;
   border-radius: 10px;
   text-align: center;
   transition: background-color 0.3s ease;
   display: flex;
   flex-direction: column;
+  margin-top: 40px;
+}
+
+.game-container.incorrecta {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.game-container.correcta {
+  background-color: rgba(0, 255, 26, 0.426);
 }
 
 .consigna-container {
@@ -73,4 +81,17 @@
   justify-content: center;
   cursor: pointer;
   color: white;
+}
+
+.button-salir {
+  background-color: burlywood;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: fit-content;
+  margin: 20px auto;
+  padding: 0 20px;
+  border-radius: 5px;
 }

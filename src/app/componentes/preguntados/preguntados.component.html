@@ -1,5 +1,12 @@
 <div class="form-container">
-  <div class="game-container" *ngIf="!loading && !error">
+  <div
+    class="game-container"
+    *ngIf="!loading && !error"
+    [ngClass]="{
+      correcta: respuestaEstado === true,
+      incorrecta: respuestaEstado === false
+    }"
+  >
     <h1>Preguntados!</h1>
     <div class="consigna-container">
       <h2>¿De qué país es la siguiente bandera?:</h2>
@@ -28,6 +35,11 @@
           {{ opciones[3] }}
         </div>
       </div>
+    </div>
+    <div class="buttons-container">
+      <button mat-fab extended class="button-salir" (click)="salir()">
+        Salir
+      </button>
     </div>
   </div>
   <div *ngIf="loading">Cargando países...</div>

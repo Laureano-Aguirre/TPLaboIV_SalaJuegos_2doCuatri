@@ -30,6 +30,9 @@ export const routes: Routes = [
   },
   {
     path: 'mi-juego',
-    loadComponent: () => import('./componentes/mi-juego/mi-juego.component'),
+    loadComponent: () =>
+      import('./componentes/mi-juego/mi-juego.component').then(
+        (m) => m.MiJuegoComponent
+      ),
   },
 ];
