@@ -1,0 +1,25 @@
+<h2>GANASTE</h2>
+<mat-dialog-content
+  >'Ganaste el juego! Se le sumaran 5 puntos a tu puntuacion
+  general'</mat-dialog-content
+>
+<mat-dialog-actions>
+  <button
+    mat-button
+    mat-flat-button
+    primary
+    (click)="this.close()"
+    id="button-display"
+  >
+    Volver a jugar
+  </button>
+  <button
+    mat-button
+    mat-flat-button
+    (click)="salir()"
+    primary
+    id="button-display"
+  >
+    Salir
+  </button>
+</mat-dialog-actions>

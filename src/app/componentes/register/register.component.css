@@ -1,16 +1,16 @@
 .form-container {
-  margin: 0;
+  background-image: url("../../../assets/img/img-fondohome.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #6a11cb, #2575fc, #ee0979, #ff6a00);
-  background-size: 400% 400%;
-  animation: gradientAnimation 15s ease infinite;
 }
 
 .ngForm {
-  background-color: rgba(154, 183, 233, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
   width: 350px;
   height: 450px;
   display: flex;
@@ -27,7 +27,7 @@ mat-form-field {
 #button-login {
   display: table-cell;
   max-width: 600px;
-  background-color: rgb(56, 118, 233);
+  background-color: burlywood;
   color: white;
 }
 
@@ -45,7 +45,7 @@ mat-form-field {
   gap: 10px;
 }
 
-@keyframes gradientAnimation {
+/* @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
   }
@@ -55,7 +55,7 @@ mat-form-field {
   100% {
     background-position: 0% 50%;
   }
-}
+} */
 
 ::ng-deep .mat-icon {
   color: #948a8ab5;

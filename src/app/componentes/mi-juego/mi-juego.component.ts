@@ -3,6 +3,7 @@ import { ModalComponent } from '../modal/modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FinjuegoModalComponent } from '../finjuego-modal/finjuego-modal.component';
 
 interface Cuadrado {
   visible: boolean;
@@ -43,7 +44,7 @@ export class MiJuegoComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleJuego() {
+  cambiarEstadoJuego() {
     if (this.juegoEnCurso) {
       this.detenerJuego();
     } else {
@@ -100,13 +101,19 @@ export class MiJuegoComponent implements OnInit, OnDestroy {
       this.tirosAcertados++;
       cuadrado.visible = false;
       clearTimeout(this.temporizador);
-      this.mostrarSiguienteCuadrado();
+      if (this.tirosAcertados === 10) {
+        const dialogRef = this.dialog.open(FinjuegoModalComponent);
+      } else {
+        this.mostrarSiguienteCuadrado();
+      }
     }
   }
 
-  finalizarJuego() {
+  finalizarJuego(
+    mensaje: string = `¡Juego terminado! Tiros acertados: ${this.tirosAcertados}`
+  ) {
     this.detenerJuego();
-    alert(`¡Juego terminado! Tiros acertados: ${this.tirosAcertados}`);
+    alert(mensaje);
   }
 
   salir() {

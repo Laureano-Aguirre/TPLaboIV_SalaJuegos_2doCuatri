@@ -8,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './quien-soy.component.css',
 })
 export class QuienSoyComponent implements OnInit {
-  texto: string = `Hola, soy Laureano! y te voy a contar sobre mí. Empece la tecnicatura en 2021, tengo 23 años, y no me canse de recursar labo 2(?), pero sí, fue de las que más me atrasó. Por suerte me di cuenta que tenía que ponerme las pilas y dejar de perder el tiempo. Me gusta el desarrollo WEB, y me interesaría seguir aprendiendo (de hecho en paralelo hago un curso de desarrollo WEB full stack en NUCBA, 1 añito, heavy je). Laburo en el rubro de analista de sistemas y tester desde la experiencia de usuario. 
-  Adjunto una foto mía de chiquito porque pintó (?). Un saludo y espero que pierdas el juego porque si lo ganas significa que voy a tener que codear hasta que alguno lo gane, y tiene pinta de que va a terminar como el pibito que se pasó el tetris y el juego la quedó en el nivel 156 jeje.`;
+  texto: string = `Hola, soy Laureano! En esta pagina te vas a encontrar con 4 juegos bastante copados. Pero antes que nada, voy a explicarte como es mi propio juego. Basicamente hay que tener muy buena punteria, ya que el juego se trata de alcanzar los 10 tiros acertados!`;
 
   textoCompletoFlag: boolean = false;
   mostrarFoto: boolean = false;

@@ -3,7 +3,7 @@
     <h1>Paren los tiros!</h1>
     <div class="consigna-container">
       <p>
-        Intenta pegarle a todos los cuadraditos y suma puntos, no seas choto!
+        Intenta pegarle a todos los cuadraditos y suma puntos, no seas burro!
       </p>
       <h2>Tiros acertados: {{ tirosAcertados }}</h2>
     </div>
@@ -24,7 +24,12 @@
       </div>
     </div>
     <div class="buttons-container">
-      <button mat-fab extended class="button-juego" (click)="toggleJuego()">
+      <button
+        mat-fab
+        extended
+        class="button-juego"
+        (click)="cambiarEstadoJuego()"
+      >
         {{ juegoEnCurso ? "Parar" : "Comenzar" }}
       </button>
       <button mat-fab extended class="button-juego" (click)="salir()">
