@@ -3,52 +3,43 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 100vh;
-  align-items: center;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .juegos-container {
-  /* background-color: rgba(255, 255, 255, 0.9); */
-  width: 900px;
-  height: 700px;
+  width: 100%;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
-  border-radius: 15px;
-  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
+  gap: 20px;
 }
 
 .juegos1-container,
 .juegos2-container {
-  width: 800px;
-  height: 300px;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px;
-  border-radius: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .juego-ahorcado,
 .juego-mayormenor,
 .juego-preguntados,
 .juego-juegopropio {
-  width: 300px;
-  height: 300px;
-  /* background-color: rgba(255, 255, 255, 0.1); */
-  border-radius: 8px;
+  width: calc(50% - 10px);
+  max-width: 300px;
+  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .juego-ahorcado:hover,
@@ -56,91 +47,44 @@
 .juego-preguntados:hover,
 .juego-juegopropio:hover {
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
 .img-ahorcado,
 .img-mayormenor,
-.img-preguntados {
+.img-preguntados,
+.img-mijueguito {
   width: 100%;
-  height: 100%;
-  /* object-fit: contain; */
+  height: calc(100% - 60px);
+  object-fit: cover;
   border-radius: 10px;
   border: 5px solid burlywood;
 }
 
-.juego-ahorcado p {
-  margin-top: 10px;
-  text-align: center;
-  background-color: burlywood;
-}
-
-.juego-mayormenor p {
-  margin-top: 10px;
-  text-align: center;
-  background-color: burlywood;
-}
-
-.juego-preguntados p {
-  margin-top: 10px;
-  text-align: center;
-  background-color: burlywood;
-}
-.juego-juegopropio p,
-.juego-preguntados p,
+.juego-ahorcado p,
 .juego-mayormenor p,
-.juego-ahorcado p {
-  width: 150px;
+.juego-preguntados p,
+.juego-juegopropio p {
+  width: 100%;
   height: 50px;
-  padding: 10px 20px;
+  margin-top: 10px;
+  padding: 5px;
   border-radius: 8px;
   background-color: burlywood;
   color: white;
   font-size: 1rem;
   font-weight: bold;
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 
-@media (max-width: 920px) {
-  .juegos-container {
-    width: 90%;
-    height: auto;
-  }
-
-  .juegos1-container,
-  .juegos2-container {
-    width: 90%;
-    height: auto;
-    flex-direction: column;
-  }
-
+@media (max-width: 768px) {
   .juego-ahorcado,
   .juego-mayormenor,
-  .juego-preguntados {
-    width: 90%;
-    height: 140px;
-    margin-bottom: 20px;
-  }
-}
-
-@media (max-width: 920px) {
-  .juegos1-container {
-    width: 90%;
-    height: auto;
-    flex-direction: column;
-  }
-
-  .juego-ahorcado {
-    width: 90%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-
-  .img-ahorcado {
-    max-height: 200px;
+  .juego-preguntados,
+  .juego-juegopropio {
+    width: 100%;
+    max-width: none;
   }
 }

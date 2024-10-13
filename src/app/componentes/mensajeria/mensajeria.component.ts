@@ -28,13 +28,15 @@ export class MensajeriaComponent implements OnInit {
     private firestore: Firestore,
     private datosService: DatosService
   ) {}
+
   ngOnInit() {
     this.GetData();
+    this.recibirUser();
+    this.recibirUserLocalStorage();
   }
 
   EnviarMensaje() {
     let col = collection(this.firestore, 'mensajes');
-    this.recibirUser();
     const fecha = new Date();
 
     addDoc(col, {
@@ -58,5 +60,19 @@ export class MensajeriaComponent implements OnInit {
 
   recibirUser() {
     this.user = this.datosService.Data;
+  }
+
+  recibirUserLocalStorage() {
+    const localStorageUser = localStorage.getItem('loggedUser');
+
+    if (localStorageUser) {
+      this.user = localStorageUser;
+    } else {
+      alert('error');
+    }
+  }
+
+  isCurrentUser(messageUser: string): boolean {
+    return messageUser === this.user;
   }
 }

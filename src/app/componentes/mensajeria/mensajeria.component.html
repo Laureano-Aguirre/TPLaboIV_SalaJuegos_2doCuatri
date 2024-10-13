@@ -3,9 +3,12 @@
   <div class="container-chat">
     <div class="container-mensajes">
       <div
-        *ngFor="let mensaje of mensajesCollection; let i = index"
-        class="mensaje"
-        [ngClass]="{ 'mensaje-usuario-actual': mensaje.user === user }"
+        *ngFor="let mensaje of mensajesCollection"
+        [ngClass]="{
+          mensaje: true,
+          'mensaje-right': isCurrentUser(mensaje.user),
+          'mensaje-left': !isCurrentUser(mensaje.user)
+        }"
       >
         <div class="mensaje-datos">
           <span>{{ mensaje.user }}</span>
@@ -17,19 +20,16 @@
           <p>{{ mensaje.mensaje }}</p>
         </div>
       </div>
-      <div class="container-enviarMensaje">
-        <div class="input-enviarMensaje">
-          <input
-            [(ngModel)]="mensaje"
-            type="text"
-            placeholder="Escribe tu mensaje..."
-            class="input-texto"
-            (keyup.enter)="EnviarMensaje()"
-          />
-        </div>
-        <div class="boton-enviar">
-          <i (click)="EnviarMensaje()" class="fa-solid fa-paper-plane"></i>
-        </div>
+    </div>
+    <div class="container-enviarMensaje">
+      <input
+        type="text"
+        [(ngModel)]="mensaje"
+        class="input-enviarMensaje input-texto"
+        placeholder="Escribe tu mensaje..."
+      />
+      <div class="boton-enviar" (click)="EnviarMensaje()">
+        <i class="fa-solid fa-paper-plane"></i>
       </div>
     </div>
   </div>

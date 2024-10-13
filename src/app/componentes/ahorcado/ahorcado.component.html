@@ -1,6 +1,19 @@
 <div class="form-container">
-  <div class="game-container" [ngClass]="{ error: letraErronea }">
+  <div
+    class="game-container"
+    [ngClass]="{
+      error: letraErronea,
+      win: letraAcertada,
+      'game-over': juegoTerminado && intentos === 0,
+      'game-win': juegoTerminado && intentos > 0
+    }"
+  >
     <h1>Ahorcado!</h1>
+    <img
+      [src]="imagenAhorcado"
+      alt="Estado del ahorcado"
+      class="ahorcado-imagen"
+    />
     <p class="palabra-oculta">{{ palabraOculta }}</p>
     <p>Intentos restantes: {{ intentos }}</p>
     <p>Letras usadas: {{ letrasUsadas.join(", ") }}</p>
@@ -8,16 +21,20 @@
       <button
         *ngFor="let letra of alfabeto"
         (click)="intentarLetra(letra)"
-        [disabled]="
-          letrasUsadas.includes(letra) ||
-          intentos === 0 ||
-          !palabraOculta.includes('_')
-        "
+        [disabled]="letrasUsadas.includes(letra) || juegoTerminado"
       >
         {{ letra }}
       </button>
     </div>
-    <p *ngIf="mensaje">{{ mensaje }}</p>
+    <p
+      *ngIf="mensaje"
+      [ngClass]="{
+        'mensaje-ganador': juegoTerminado && intentos > 0,
+        'mensaje-perdedor': juegoTerminado && intentos === 0
+      }"
+    >
+      {{ mensaje }}
+    </p>
     <button
       mat-fab
       extended

@@ -31,6 +31,7 @@ export default class PreguntadosComponent implements OnInit {
   loading: boolean = true;
   error: string = '';
   respuestaEstado!: boolean | null;
+  vidas: number = 3;
 
   constructor(
     private datosService: DatosService,
@@ -86,6 +87,10 @@ export default class PreguntadosComponent implements OnInit {
       this.respuestaEstado = true;
     } else {
       this.respuestaEstado = false;
+      this.vidas--;
+      if (this.vidas === 0) {
+        this.finDeJuego();
+      }
     }
 
     setTimeout(() => {
@@ -104,6 +109,23 @@ export default class PreguntadosComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
         this.router.navigate(['/home']);
+      }
+    });
+  }
+
+  finDeJuego() {
+    const dialogRef = this.dialog.open(ModalComponent, {
+      data: {
+        title: 'Fin del juego',
+        message: 'Perdiste! Queres seguir jugando, o salir del juego?',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result === true) {
+        this.router.navigate(['/home']);
+      } else {
+        this.vidas = 3;
       }
     });
   }

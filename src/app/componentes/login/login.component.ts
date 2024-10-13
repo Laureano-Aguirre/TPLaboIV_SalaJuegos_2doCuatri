@@ -79,6 +79,8 @@ export class LoginComponent {
         if (res.user.email !== null) {
           this.loggedUser = res.user.email;
           this.enviarUser();
+          localStorage.setItem('loggedUser', this.loggedUser);
+          console.log(localStorage.getItem('loggedUser'));
           this.goTo('home');
         }
       })
@@ -134,6 +136,7 @@ export class LoginComponent {
 
   CloseSession() {
     signOut(this.auth).then(() => {
+      localStorage.removeItem('loggedUser');
       this.goTo('login');
     });
   }

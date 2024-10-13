@@ -7,7 +7,7 @@ import { MatIcon } from '@angular/material/icon';
   standalone: true,
   imports: [CommonModule, MatIcon],
   templateUrl: './ahorcado.component.html',
-  styleUrl: './ahorcado.component.css',
+  styleUrls: ['./ahorcado.component.css'],
 })
 export default class AhorcadoComponent {
   palabras: string[] = ['BOCA', 'MILANESA', 'ASADO', 'MESSI', 'COLAPINTO'];
@@ -19,6 +19,8 @@ export default class AhorcadoComponent {
   alfabeto: string[] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
   letraErronea: boolean = false;
   letraAcertada: boolean = false;
+  imagenAhorcado: string = './assets/ahorcado/ahorcado-0.png';
+  juegoTerminado: boolean = false;
 
   ngOnInit() {
     this.iniciarJuego();
@@ -33,10 +35,12 @@ export default class AhorcadoComponent {
     this.mensaje = '';
     this.letraErronea = false;
     this.letraAcertada = false;
+    this.imagenAhorcado = './assets/ahorcado/ahorcado-0.png';
+    this.juegoTerminado = false;
   }
 
   intentarLetra(letra: string) {
-    if (this.letrasUsadas.includes(letra)) {
+    if (this.letrasUsadas.includes(letra) || this.juegoTerminado) {
       return;
     }
 
@@ -59,6 +63,7 @@ export default class AhorcadoComponent {
       if (!this.palabraOculta.includes('_')) {
         this.mensaje =
           '¡Felicidades! Te pasaste el jueguito y ganaste 3 puntos.';
+        this.juegoTerminado = true;
       }
     } else {
       this.intentos--;
@@ -66,10 +71,17 @@ export default class AhorcadoComponent {
       setTimeout(() => {
         this.letraErronea = false;
       }, 300);
+      this.actualizarImagenAhorcado();
       if (this.intentos === 0) {
         this.mensaje = `Perdiste. La palabra era: ${this.palabraActual}`;
+        this.juegoTerminado = true;
       }
     }
+  }
+
+  actualizarImagenAhorcado() {
+    const intentosRestantes = 6 - this.intentos;
+    this.imagenAhorcado = `./assets/ahorcado/ahorcado-${intentosRestantes}.png`;
   }
 
   reiniciarJuego() {
