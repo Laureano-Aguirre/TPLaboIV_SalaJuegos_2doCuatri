@@ -6,6 +6,12 @@ import { MatIcon } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
 import { Router } from '@angular/router';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  collectionData,
+} from '@angular/fire/firestore';
 
 interface Country {
   name: {
@@ -32,11 +38,13 @@ export default class PreguntadosComponent implements OnInit {
   error: string = '';
   respuestaEstado!: boolean | null;
   vidas: number = 3;
+  puntos: number = 0;
 
   constructor(
     private datosService: DatosService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private firestore: Firestore
   ) {}
 
   ngOnInit(): void {
@@ -85,6 +93,7 @@ export default class PreguntadosComponent implements OnInit {
   verificarRespuesta(opcionElegida: string) {
     if (this.selectedPais && opcionElegida === this.selectedPais.name.common) {
       this.respuestaEstado = true;
+      this.puntos++;
     } else {
       this.respuestaEstado = false;
       this.vidas--;
@@ -108,6 +117,9 @@ export default class PreguntadosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
+        if (this.puntos > 0) {
+          this.enviarPuntos();
+        }
         this.router.navigate(['/home']);
       }
     });
@@ -123,10 +135,27 @@ export default class PreguntadosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
+        if (this.puntos > 0) {
+          this.enviarPuntos();
+        }
         this.router.navigate(['/home']);
       } else {
+        if (this.puntos > 0) {
+          this.enviarPuntos();
+        }
         this.vidas = 3;
+        this.puntos = 0;
       }
+    });
+  }
+
+  enviarPuntos() {
+    let col = collection(this.firestore, 'puntuacion');
+    const localStorageUser = localStorage.getItem('loggedUser');
+    addDoc(col, {
+      user: localStorageUser,
+      juego: 'preguntados',
+      puntos: this.puntos,
     });
   }
 }

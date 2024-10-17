@@ -4,6 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FinjuegoModalComponent } from '../finjuego-modal/finjuego-modal.component';
+import {
+  Firestore,
+  addDoc,
+  collection,
+  collectionData,
+} from '@angular/fire/firestore';
 
 interface Cuadrado {
   visible: boolean;
@@ -23,8 +29,13 @@ export class MiJuegoComponent implements OnInit, OnDestroy {
   juegoEnCurso: boolean = false;
   cuadradoActual: Cuadrado | null = null;
   temporizador: any;
+  puntos: number = 0;
 
-  constructor(public dialog: MatDialog, private router: Router) {}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private firestore: Firestore
+  ) {}
 
   ngOnInit() {
     this.inicializarFilas();
@@ -103,6 +114,7 @@ export class MiJuegoComponent implements OnInit, OnDestroy {
       clearTimeout(this.temporizador);
       if (this.tirosAcertados === 10) {
         const dialogRef = this.dialog.open(FinjuegoModalComponent);
+        this.puntos++;
       } else {
         this.mostrarSiguienteCuadrado();
       }
@@ -110,10 +122,9 @@ export class MiJuegoComponent implements OnInit, OnDestroy {
   }
 
   finalizarJuego(
-    mensaje: string = `¡Juego terminado! Tiros acertados: ${this.tirosAcertados}`
+    mensaje: string = `Juego terminado! Tiros acertados: ${this.tirosAcertados}`
   ) {
     this.detenerJuego();
-    alert(mensaje);
   }
 
   salir() {
@@ -127,8 +138,21 @@ export class MiJuegoComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
+        if (this.puntos > 0) {
+          this.enviarPuntos();
+        }
         this.router.navigate(['/home']);
       }
+    });
+  }
+
+  enviarPuntos() {
+    let col = collection(this.firestore, 'puntuacion');
+    const localStorageUser = localStorage.getItem('loggedUser');
+    addDoc(col, {
+      user: localStorageUser,
+      juego: 'paren los tiros',
+      puntos: this.puntos,
     });
   }
 }

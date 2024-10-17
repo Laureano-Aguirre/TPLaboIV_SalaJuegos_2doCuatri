@@ -10,6 +10,7 @@ import {
   query,
   orderBy,
 } from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mensajeria',
@@ -26,7 +27,8 @@ export class MensajeriaComponent implements OnInit {
 
   constructor(
     private firestore: Firestore,
-    private datosService: DatosService
+    private datosService: DatosService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -68,7 +70,7 @@ export class MensajeriaComponent implements OnInit {
     if (localStorageUser) {
       this.user = localStorageUser;
     } else {
-      alert('error');
+      this.router.navigate(['/home']);
     }
   }
 

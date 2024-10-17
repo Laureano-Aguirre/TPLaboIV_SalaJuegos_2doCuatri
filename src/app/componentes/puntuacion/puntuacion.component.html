@@ -1,14 +1,38 @@
-<div class="container-pag">
-  <div class="maintenance-container">
-    <div class="maintenance-content">
-      <h1>¡En mantenimiento!</h1>
-      <p>Estamos trabajando para mejorar tu experiencia.</p>
-      <div class="ilustracion">
-        <img
-          src="../../../assets/img/mantenimiento.png"
-          alt="Mantenimiento"
-          class="maintenance-image"
-        />
+<div class="form-container">
+  <div class="container-pag">
+    <div class="puntuacion-container">
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="mat-table">
+          <ng-container matColumnDef="posicion">
+            <th mat-header-cell *matHeaderCellDef>Num.</th>
+            <td mat-cell *matCellDef="let element; let i = index">
+              {{ i + 1 }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="user">
+            <th mat-header-cell *matHeaderCellDef>Usuario</th>
+            <td mat-cell *matCellDef="let element">{{ element.user }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="juego">
+            <th mat-header-cell *matHeaderCellDef>Juego</th>
+            <td mat-cell *matCellDef="let element">{{ element.juego }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="puntos">
+            <th mat-header-cell *matHeaderCellDef>Puntos</th>
+            <td mat-cell *matCellDef="let element">{{ element.puntos }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons
+        ></mat-paginator>
       </div>
     </div>
   </div>

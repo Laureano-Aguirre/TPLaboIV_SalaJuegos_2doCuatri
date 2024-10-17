@@ -21,6 +21,7 @@ export class NavBarComponent implements OnInit {
   rutaHome: string = 'home';
   rutaPuntuacion: string = 'puntuacion';
   rutaMensajeria: string = 'mensajeria';
+  rutaEncuesta: string = 'encuesta';
   user!: string;
 
   constructor(
@@ -32,6 +33,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
     this.recibirUser();
+    this.recibirUserLocalStorage();
   }
 
   goTo(path: string) {
@@ -43,5 +45,15 @@ export class NavBarComponent implements OnInit {
 
   recibirUser() {
     this.user = this.datosService.Data;
+  }
+
+  recibirUserLocalStorage() {
+    const localStorageUser = localStorage.getItem('loggedUser');
+
+    if (localStorageUser) {
+      this.user = localStorageUser;
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }

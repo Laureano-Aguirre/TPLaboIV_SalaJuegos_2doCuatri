@@ -1,0 +1,84 @@
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="enviarForm()" class="encuesta-container">
+    <div class="datos-container">
+      <mat-form-field class="combo-datos">
+        <mat-label>Ingrese su nombre</mat-label>
+        <input matInput formControlName="nombre" />
+        <mat-error *ngIf="nombre?.hasError('pattern')">
+          Sólo debe contener letras
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="combo-datos">
+        <mat-label>Ingrese su apellido</mat-label>
+        <input matInput formControlName="apellido" />
+        <mat-error *ngIf="apellido?.hasError('pattern')">
+          Sólo debe contener letras
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="combo-datos">
+        <mat-label>Ingrese su edad</mat-label>
+        <input matInput type="number" formControlName="edad" />
+        <mat-error *ngIf="edad?.hasError('min') || edad?.hasError('max')">
+          Debe ser mayor a 18 y menor a 99
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="preguntas-container">
+      <div class="pregunta1-container">
+        <label>Las vidas en el preguntado:</label>
+        <mat-radio-group formControlName="vidas">
+          <div class="opciones-radiobutton">
+            <mat-radio-button value="1-3"
+              >Entre 1 y 3 está mejor</mat-radio-button
+            >
+            <mat-radio-button value="3">3 están bien</mat-radio-button>
+            <mat-radio-button value="más de 3"
+              >Más de 3 está mejor</mat-radio-button
+            >
+          </div>
+        </mat-radio-group>
+      </div>
+
+      <div class="pregunta2-container">
+        <label>Que juegos cambiarias?</label>
+        <div class="opciones-checkbox">
+          <mat-checkbox formControlName="ahorcado">Ahorcado</mat-checkbox>
+          <mat-checkbox formControlName="mayorMenor">Mayor menor</mat-checkbox>
+          <mat-checkbox formControlName="preguntados">Preguntados</mat-checkbox>
+          <mat-checkbox formControlName="ninguno">Ninguno</mat-checkbox>
+        </div>
+      </div>
+
+      <mat-form-field class="pregunta3-container">
+        <mat-label
+          >Contanos qué juego sumarías, y si necesitas, describilo:</mat-label
+        >
+        <textarea
+          class="comentarios-container"
+          matInput
+          formControlName="comentarios"
+          rows="5"
+          maxlength="200"
+        ></textarea>
+        <mat-error *ngIf="comentarios?.hasError('maxlength')">
+          Máximo de 200 caracteres
+        </mat-error>
+        <mat-hint align="end"
+          >{{ comentarios?.value?.length || 0 }}/200</mat-hint
+        >
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      class="button-enviar"
+    >
+      Enviar formulario
+    </button>
+  </form>
+</div>

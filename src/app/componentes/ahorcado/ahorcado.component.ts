@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-
+import {
+  Firestore,
+  addDoc,
+  collection,
+  collectionData,
+} from '@angular/fire/firestore';
 @Component({
   selector: 'app-ahorcado',
   standalone: true,
@@ -9,11 +14,12 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './ahorcado.component.html',
   styleUrls: ['./ahorcado.component.css'],
 })
-export default class AhorcadoComponent {
+export default class AhorcadoComponent implements OnInit {
   palabras: string[] = ['BOCA', 'MILANESA', 'ASADO', 'MESSI', 'COLAPINTO'];
   palabraActual: string = '';
   palabraOculta: string = '';
   intentos: number = 6;
+  puntos: number = 0;
   letrasUsadas: string[] = [];
   mensaje: string = '';
   alfabeto: string[] = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
@@ -22,6 +28,7 @@ export default class AhorcadoComponent {
   imagenAhorcado: string = './assets/ahorcado/ahorcado-0.png';
   juegoTerminado: boolean = false;
 
+  constructor(private firestore: Firestore) {}
   ngOnInit() {
     this.iniciarJuego();
   }
@@ -61,9 +68,10 @@ export default class AhorcadoComponent {
       }, 300);
 
       if (!this.palabraOculta.includes('_')) {
-        this.mensaje =
-          '¡Felicidades! Te pasaste el jueguito y ganaste 3 puntos.';
+        this.mensaje = 'Felicidades! Te pasaste el jueguito y ganaste 1 punto.';
+        this.puntos++;
         this.juegoTerminado = true;
+        this.enviarPuntos();
       }
     } else {
       this.intentos--;
@@ -86,5 +94,15 @@ export default class AhorcadoComponent {
 
   reiniciarJuego() {
     this.iniciarJuego();
+  }
+
+  enviarPuntos() {
+    let col = collection(this.firestore, 'puntuacion');
+    const localStorageUser = localStorage.getItem('loggedUser');
+    addDoc(col, {
+      user: localStorageUser,
+      juego: 'ahorcado',
+      puntos: this.puntos,
+    });
   }
 }

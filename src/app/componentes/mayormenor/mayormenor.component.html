@@ -1,15 +1,37 @@
 <div class="form-container">
-  <div class="maintenance-container">
-    <div class="maintenance-content">
-      <h1>¡En mantenimiento!</h1>
-      <p>Estamos trabajando para mejorar tu experiencia.</p>
-      <div class="ilustracion">
-        <img
-          src="../../../assets/img/mantenimiento.png"
-          alt="Mantenimiento"
-          class="maintenance-image"
-        />
-      </div>
+  <div
+    class="game-container"
+    [ngClass]="{ error: respuestaIncorrecta, win: respuestaCorrecta }"
+  >
+    <h1>Mayor o menor? A jugar!</h1>
+    <h2>Puntos: {{ puntuacion }}</h2>
+    <img [src]="cartaActualSrc" alt="Carta actual" class="carta-container" />
+    <h2>La proxima carta, va a ser mayor o menor?</h2>
+    <div class="opciones-container">
+      <button
+        class="opcion-mayor"
+        (click)="intentar('mayor')"
+        [disabled]="juegoTerminado"
+      >
+        Mayor
+      </button>
+      <button
+        class="opcion-menor"
+        (click)="intentar('menor')"
+        [disabled]="juegoTerminado"
+      >
+        Menor
+      </button>
     </div>
+
+    <p *ngIf="mensaje">{{ mensaje }}</p>
+    <button
+      mat-fab
+      extended
+      class="button-reiniciar"
+      (click)="reiniciarJuego()"
+    >
+      Reiniciar juego
+    </button>
   </div>
 </div>
